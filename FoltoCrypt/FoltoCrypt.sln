@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoltoCrypt", "FoltoCrypt.csproj", "{6DD32330-0B6E-467B-8048-BA5F6E833E71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DD32330-0B6E-467B-8048-BA5F6E833E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD32330-0B6E-467B-8048-BA5F6E833E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD32330-0B6E-467B-8048-BA5F6E833E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD32330-0B6E-467B-8048-BA5F6E833E71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17F5B840-5A19-4B4C-BA62-1BD71BF87BDF}
+	EndGlobalSection
+EndGlobal
