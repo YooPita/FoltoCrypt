@@ -3,10 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FoltoCrypt"
+        xmlns:local="clr-namespace:FoltoCrypt.Classes"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:CostColor x:Key="CostColor"/>
+        <Style x:Key="IdStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Foreground" Value="{Binding Cost, Converter={StaticResource CostColor}}" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File" Cursor="Hand">
+                <MenuItem Header="New" Cursor="Hand" ></MenuItem>
+                <MenuItem Header="Open" Cursor="Hand" ></MenuItem>
+                <Separator />
+                <MenuItem Name="Save" Header="Save" Cursor="Hand" ></MenuItem>
+                <MenuItem Header="Save As..." Cursor="Hand" ></MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" Cursor="Hand" ></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StatusBar Height="30" VerticalAlignment="Top" Margin="0,25,0,0">
+            <Button Click="Add_Click" Name="Add" Content="Add" HorizontalAlignment="Left" Width="75"/>
+            <Button Name="Edit" Content="Edit" HorizontalAlignment="Left" Width="75"/>
+            <Button Name="Remove" Content="Remove" HorizontalAlignment="Left" Width="75"/>
+        </StatusBar>
+        <DataGrid x:Name="dataGrid"  Margin="0,55,0,33" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Visibility="Hidden" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Investment" Width="*" Binding="{Binding Investment}"/>
+                <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}"  CellStyle="{StaticResource IdStyle}"/>
+                <DataGridTextColumn Header="Balance" Width="*" Binding="{Binding Balance}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StatusBar Height="33" VerticalAlignment="Bottom">
+            <Label Name="LabelTotIn" Content=""/>
+            <Label Name="LabelTotCo" Content=""/>
+            <Label Name="LabelTotBa" Content=""/>
+        </StatusBar>
     </Grid>
 </Window>

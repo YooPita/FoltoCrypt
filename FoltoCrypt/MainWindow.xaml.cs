@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoltoCrypt.Classes;
+using FoltoCrypt.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,40 @@ namespace FoltoCrypt
     /// </summary>
     public partial class MainWindow : Window
     {
+        CreateWallet createWallet;
         public MainWindow()
         {
             InitializeComponent();
+            NewWallets();
         }
+
+        #region Main Functions
+        private void NewWallets()
+        {
+            ManagerOfCurrence.Start();
+        }
+        #endregion
+
+        #region Modal
+        private void OpenChange(int N = -1)
+        {
+            if (N != -1)
+            {
+                createWallet = new CreateWallet();
+            }
+            else
+            {
+                createWallet = new CreateWallet();
+            }
+
+            createWallet.ShowDialog();
+            createWallet.Activate();
+        }
+        #endregion
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            OpenChange();
+        }
+
     }
 }

@@ -1,0 +1,30 @@
+﻿<Window x:Class="FoltoCrypt.Windows.CreateWallet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoltoCrypt.Windows"
+        mc:Ignorable="d"
+        Title="Create Wallet" Height="300" Width="394.341" ResizeMode="NoResize"  WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="207*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="30,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Identification" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Balance:" HorizontalAlignment="Left" Margin="30,67,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="PName" Height="23" Margin="0,44,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2"/>
+        <TextBox Name="PBalance" Height="23" Margin="0,70,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2"/>
+        <Label Content="Currency:" HorizontalAlignment="Left" Margin="30,93,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="PCurrencyB" Height="23" Margin="0,96,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2" />
+
+        <Label Content="Investment:" HorizontalAlignment="Left" Margin="30,138,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="PInvestment" Height="23" Margin="0,141,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2"/>
+        <Label Content="Currency:" HorizontalAlignment="Left" Margin="30,164,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="PCurrencyI" Height="23" Margin="0,167,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2"/>
+
+        <Button Name="Ok" Content="Ok"  Margin="0,0,10,10" Width="75" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
+        <Button Name="Cancel" Content="Cancel" Margin="0,0,90,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
+    </Grid>
+</Window>
