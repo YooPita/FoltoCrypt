@@ -16,3 +16,4 @@ D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\FoltoCrypt.exe
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\FoltoCrypt.pdb
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Windows\CreateWallet.g.cs
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Windows\CreateWallet.baml
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\FoltoCrypt.csprojResolveAssemblyReference.cache

@@ -47,7 +47,7 @@ namespace FoltoCrypt
             {
                 createWallet = new CreateWallet();
             }
-
+            
             createWallet.ShowDialog();
             createWallet.Activate();
         }

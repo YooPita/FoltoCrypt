@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FoltoCrypt.Windows"
         mc:Ignorable="d"
         Title="Create Wallet" Height="300" Width="394.341" ResizeMode="NoResize"  WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="181*"/>
@@ -24,7 +25,7 @@
         <Label Content="Currency:" HorizontalAlignment="Left" Margin="30,164,0,0" VerticalAlignment="Top"/>
         <TextBox Name="PCurrencyI" Height="23" Margin="0,167,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2"/>
 
-        <Button Name="Ok" Content="Ok"  Margin="0,0,10,10" Width="75" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
-        <Button Name="Cancel" Content="Cancel" Margin="0,0,90,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
+        <Button Name="Ok" Content="Ok"  Margin="0,0,10,10" Width="75" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Click="Ok_Click"/>
+        <Button Name="Cancel" Content="Cancel" Margin="0,0,90,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1" Click="Cancel_Click"/>
     </Grid>
 </Window>

@@ -28,6 +28,7 @@
             <Button Click="Add_Click" Name="Add" Content="Add" HorizontalAlignment="Left" Width="75"/>
             <Button Name="Edit" Content="Edit" HorizontalAlignment="Left" Width="75"/>
             <Button Name="Remove" Content="Remove" HorizontalAlignment="Left" Width="75"/>
+            <Button x:Name="Refresh" Content="Refresh" HorizontalAlignment="Left" Width="75"/>
         </StatusBar>
         <DataGrid x:Name="dataGrid"  Margin="0,55,0,33" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White">
             <DataGrid.Columns>

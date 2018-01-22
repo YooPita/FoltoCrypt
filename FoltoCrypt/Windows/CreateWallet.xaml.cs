@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,23 @@ namespace FoltoCrypt.Windows
     /// </summary>
     public partial class CreateWallet : Window
     {
+        public delegate void MethodContainer();
+        public event MethodContainer OK;
+
         public CreateWallet()
         {
             InitializeComponent();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            OK?.Invoke();
+            Close();
         }
     }
 }
