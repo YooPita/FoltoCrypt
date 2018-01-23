@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoltoCrypt.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,10 +23,27 @@ namespace FoltoCrypt.Windows
     {
         public delegate void MethodContainer();
         public event MethodContainer OK;
+        public event MethodContainer Cancel;
+        private bool ok = false;
+        public int IdWal = -1;
 
-        public CreateWallet()
+        public CreateWallet(ItemWallet WAL = null)
         {
             InitializeComponent();
+            if (WAL != null)
+            {
+                IdWal = WAL.Id;
+                PName.Text = WAL.Name;
+                PBalance.Text = WAL.BalCur.ToString();
+                PCurrencyB.Text = WAL.Currency_B;
+                PInvestment.Text = WAL.InvCur.ToString();
+                PCurrencyI.Text = WAL.Currency_I;
+            }
+        }
+
+        public void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            if(!ok)Cancel?.Invoke();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -35,6 +53,7 @@ namespace FoltoCrypt.Windows
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
+            ok = true;
             OK?.Invoke();
             Close();
         }

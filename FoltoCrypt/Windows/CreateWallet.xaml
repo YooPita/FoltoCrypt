@@ -26,6 +26,6 @@
         <TextBox Name="PCurrencyI" Height="23" Margin="0,167,30,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="243" Grid.ColumnSpan="2"/>
 
         <Button Name="Ok" Content="Ok"  Margin="0,0,10,10" Width="75" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Click="Ok_Click"/>
-        <Button Name="Cancel" Content="Cancel" Margin="0,0,90,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1" Click="Cancel_Click"/>
+        <Button Name="Canc" Content="Cancel" Margin="0,0,90,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1" Click="Cancel_Click"/>
     </Grid>
 </Window>
