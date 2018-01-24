@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace FoltoCrypt.Classes
 {
@@ -16,9 +17,14 @@ namespace FoltoCrypt.Classes
         {
             DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(ItemWallet[]));
 
-            using (FileStream fs = new FileStream(FileName + ".json", FileMode.OpenOrCreate))
+            var json = JsonConvert.SerializeObject(new
             {
-                jsonFormatter.WriteObject(fs, ItemList);
+                operations = ItemList
+            });
+
+            using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate))
+            {
+                //jsonFormatter.WriteObjectContent(fs, json);
             }
         }
 

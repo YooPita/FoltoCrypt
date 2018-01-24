@@ -37,14 +37,15 @@ namespace FoltoCrypt
             ManagerOfCurrence.Start();
             walletArray = new List<ItemWallet>();
             Path = "";
-            dataGrid
+            dataGrid.Items.Clear();
+            CreateColumns();
         }
 
         private void CreateColumns()
         {
             // Добавляем колонки
             string[] columns = { "Id", "Name", "Investment", "Cost", "Balance" };
-            AddColumns(columns);
+            //AddColumns(columns);
         }
 
         private void AddColumns(string[] str)
@@ -57,7 +58,19 @@ namespace FoltoCrypt
                     {
                         Header = index,
                         Binding = new Binding(index),
-                        Width = 50
+                        Visibility = Visibility.Hidden,
+                        
+                    });
+                }
+                else if(index == "Cost")
+                {
+                    /*DataGridTextColumn column = new DataGridTextColumn();
+                    column.ElementStyle = this.FindResource("MyStyle") as Style;*/
+                    dataGrid.Columns.Add(new DataGridTextColumn
+                    {
+                        Header = index,
+                        Binding = new Binding(index),
+                        CellStyle = this.FindResource("IdStyle") as Style
                     });
                 }
                 else
@@ -65,8 +78,7 @@ namespace FoltoCrypt
                     dataGrid.Columns.Add(new DataGridTextColumn
                     {
                         Header = index,
-                        Binding = new Binding(index),
-                        Width = 130
+                        Binding = new Binding(index)
                     });
                 }
             }
@@ -190,8 +202,43 @@ namespace FoltoCrypt
             }
             createWallet.Cancel -= CloseChange;
         }
+
+        private void SaveAs()
+        {
+            if (Path != "") SaveJust();
+            else
+            {
+                SaveChooseDir();
+            }
+        }
+
+        private void SaveChooseDir()
+        {
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "My Wallets"; // Default file name
+            dlg.DefaultExt = ".jw"; // Default file extension
+            dlg.Filter = "JSON wallets|*.jw"; // Filter files by extension
+
+            // Show save file dialog box
+            bool? result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                Path = dlg.FileName;
+                SaveJust();
+                MessageBox.Show(Path, "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void SaveJust()
+        {
+            MainFunctions.SaveWallets(walletArray,Path);
+        }
         #endregion
-        
+
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             OpenChange();
@@ -213,9 +260,19 @@ namespace FoltoCrypt
             }
         }
 
-        private void New_Click(object sender, RoutedEventArgs e)
-        {
+        private void New_Click(object sender, RoutedEventArgs e) => NewWallets();
 
+        private void Refre_Click(object sender, RoutedEventArgs e) => Refresh();
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            NewWallets();
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e) => SaveAs();
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e) => SaveChooseDir();
+
+        private void Exit_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
     }
 }
