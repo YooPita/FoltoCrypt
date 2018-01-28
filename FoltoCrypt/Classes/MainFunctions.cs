@@ -17,26 +17,44 @@ namespace FoltoCrypt.Classes
         {
             DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(ItemWallet[]));
 
-            var json = JsonConvert.SerializeObject(new
-            {
-                operations = ItemList
-            });
+            var json = JsonConvert.SerializeObject(ItemList, Formatting.Indented);
 
             using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate))
             {
-                //jsonFormatter.WriteObjectContent(fs, json);
+                // преобразуем строку в байты
+                byte[] array = System.Text.Encoding.Default.GetBytes(json);
+                // запись массива байтов в файл
+                fs.Write(array, 0, array.Length);
             }
+
+            /*using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate))
+            {
+                //jsonFormatter.WriteObject(fs, ItemList);
+                fs.Write(json, 0, json.Length);
+            }*/
         }
 
         static public List<ItemWallet> LoadWallets(string FileName)
         {
             List<ItemWallet> ItemList;
+            using (FileStream fstream = File.OpenRead(FileName))
+            {
+                // преобразуем строку в байты
+                byte[] array = new byte[fstream.Length];
+                // считываем данные
+                fstream.Read(array, 0, array.Length);
+                // декодируем байты в строку
+                string json = System.Text.Encoding.Default.GetString(array);
+
+                ItemList = JsonConvert.DeserializeObject<List<ItemWallet>>(json);
+            }
+            /*List<ItemWallet> ItemList;
             DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(ItemWallet[]));
 
             using (FileStream fs = new FileStream(FileName + ".json", FileMode.OpenOrCreate))
             {
                 ItemList = (List<ItemWallet>)jsonFormatter.ReadObject(fs);
-            }
+            }*/
             return ItemList;
         }
 

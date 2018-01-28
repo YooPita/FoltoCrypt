@@ -84,8 +84,9 @@ namespace FoltoCrypt
             }
         }
 
-        private void Refresh()
+        private  void Refresh()
         {
+            dataGrid.Items.Clear();
             double totIn = 0;
             double totCo = 0;
             double totBa = 0;
@@ -98,8 +99,8 @@ namespace FoltoCrypt
                 totIn += p.InvCur / p.Price_I;
                 totCo += p.BalCur / p.Price_B - p.InvCur / p.Price_I;
                 totBa += p.BalCur / p.Price_B;
+                dataGrid.Items.Add(p);
             }
-            dataGrid.Items.Refresh();
             LabelTotIn.Content = "Total investment: " + totIn + " " + ManagerOfCurrence.MainCurrency;
             LabelTotCo.Content = "Total Cost: " + totCo + " " + ManagerOfCurrence.MainCurrency;
             LabelTotBa.Content = "Total Balance: " + totBa + " " + ManagerOfCurrence.MainCurrency;
@@ -212,6 +213,35 @@ namespace FoltoCrypt
             }
         }
 
+        private async void OpenChooseDir()
+        {
+            // Configure open file dialog box
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "My Wallets"; // Default file name
+            dlg.DefaultExt = ".jw"; // Default file extension
+            dlg.Filter = "JSON wallets|*.jw"; // Filter files by extension
+
+            // Show open file dialog box
+            bool? result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                NewWallets();
+                walletArray = MainFunctions.LoadWallets(dlg.FileName);
+
+                foreach (var p in walletArray)
+                {
+                    ManagerOfCurrence.New(p.Currency_B);
+                    ManagerOfCurrence.New(p.Currency_I);
+                }
+
+                await ManagerOfCurrence.Refresh();
+                Refresh();
+            }
+        }
+
         private void SaveChooseDir()
         {
             // Configure save file dialog box
@@ -264,10 +294,7 @@ namespace FoltoCrypt
 
         private void Refre_Click(object sender, RoutedEventArgs e) => Refresh();
 
-        private void Open_Click(object sender, RoutedEventArgs e)
-        {
-            NewWallets();
-        }
+        private void Open_Click(object sender, RoutedEventArgs e) => OpenChooseDir();
 
         private void Save_Click(object sender, RoutedEventArgs e) => SaveAs();
 
