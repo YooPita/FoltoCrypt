@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Release\
 FoltoCrypt
 none
 false
-DEBUG;TRACE
+TRACE
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\App.xaml
 2528754944
 
-12880160536
+8-1894284522
 15-2085341569
 MainWindow.xaml;Windows\CreateWallet.xaml;
 
