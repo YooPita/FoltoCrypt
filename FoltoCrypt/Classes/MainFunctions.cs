@@ -238,9 +238,9 @@ namespace FoltoCrypt.Classes
         public double InvCur { get; set; }
         public string Currency_I { get; set; }
         public string Investment { get { return InvCur + " " + Currency_I; } }
-        public string Cost { get { return BalCur / Price_B - InvCur / Price_I + " " + Currency_I; } }
+        public string Cost { get { return Math.Round(BalCur / Price_B - InvCur / Price_I,2) + " " + Currency_I; } }
         public string Balance { get { return BalCur + " " + Currency_B; } }
-        public string TrueBalance { get { return BalCur / Price_B + " " + Currency_I; } }
+        public string TrueBalance { get { return Math.Round(BalCur / Price_B,2) + " " + Currency_I; } }
         public double Price_I { get; set; }
         public double Price_B { get; set; }
 

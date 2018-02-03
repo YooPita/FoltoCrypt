@@ -41,6 +41,43 @@ namespace FoltoCrypt.Windows
             }
         }
 
+        public bool Check()
+        {
+            bool answer = true;
+            double Bal;
+
+            if (!double.TryParse(PBalance.Text, out Bal))
+            {
+                answer = false;
+                string TRY = PBalance.Text;
+                TRY = TRY.Replace(".", ",");
+                if (double.TryParse(TRY, out Bal))
+                {
+                    answer = true;
+                    PBalance.Text = TRY;
+                }
+            }
+
+            if (!double.TryParse(PInvestment.Text, out Bal))
+            {
+                answer = false;
+                string TRY = PInvestment.Text;
+                TRY = TRY.Replace(".", ",");
+                if (double.TryParse(TRY, out Bal))
+                {
+                    answer = true;
+                    PInvestment.Text = TRY;
+                }
+            }
+
+            if (PName.Text==""|| PBalance.Text==""|| PCurrencyB.Text==""|| PInvestment.Text==""|| PCurrencyI.Text=="")
+            {
+                answer = false;
+            }
+            
+            return answer;
+        }
+
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
             if(!ok)Cancel?.Invoke();
@@ -53,9 +90,16 @@ namespace FoltoCrypt.Windows
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
-            ok = true;
-            OK?.Invoke();
-            Close();
+            if (Check())
+            {
+                ok = true;
+                OK?.Invoke();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Fill in all the fields!");
+            }
         }
     }
 }

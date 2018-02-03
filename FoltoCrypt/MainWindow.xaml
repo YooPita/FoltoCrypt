@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoltoCrypt.Classes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="FoltoCrypt" Height="350" Width="525">
     <Window.Resources>
         <local:CostColor x:Key="CostColor"/>
         <Style x:Key="IdStyle" TargetType="{x:Type DataGridCell}">
@@ -35,8 +35,9 @@
                 <DataGridTextColumn Header="Id" Visibility="Hidden" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Investment" Width="*" Binding="{Binding Investment}"/>
-                <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}"  CellStyle="{StaticResource IdStyle}"/>
                 <DataGridTextColumn Header="Balance" Width="*" Binding="{Binding Balance}"/>
+                <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}"  CellStyle="{StaticResource IdStyle}"/>
+                <DataGridTextColumn Header="TrueBalance" Width="*" Binding="{Binding TrueBalance}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StatusBar Height="33" VerticalAlignment="Bottom">

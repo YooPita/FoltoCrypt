@@ -2,7 +2,6 @@ D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Release\FoltoCrypt.exe.config
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Release\FoltoCrypt.exe
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Release\FoltoCrypt.pdb
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Release\Newtonsoft.Json.dll
-D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Release\FoltoCrypt.csprojResolveAssemblyReference.cache
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Release\MainWindow.g.cs
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Release\Windows\CreateWallet.g.cs
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Release\App.g.cs
