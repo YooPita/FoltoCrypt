@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\App.xaml
-2528754944
+31194283893
 
-12880160536
+13-1782559841
 15-2085341569
-MainWindow.xaml;Windows\CreateWallet.xaml;
+MainWindow.xaml;Windows\CreateWallet.xaml;Windows\Options.xaml;
 
-False
+True
 

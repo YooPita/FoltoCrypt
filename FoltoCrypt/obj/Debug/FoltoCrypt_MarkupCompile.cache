@@ -8,13 +8,13 @@ D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\
 FoltoCrypt
 none
 false
-CODE_ANALYSIS;DEBUG;TRACE
+DEBUG;TRACE
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\App.xaml
-2528754944
+31194283893
 
-8-1894284522
+9-262037603
 15-2085341569
-MainWindow.xaml;Windows\CreateWallet.xaml;
+MainWindow.xaml;Windows\CreateWallet.xaml;Windows\Options.xaml;
 
 False
 

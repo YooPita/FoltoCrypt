@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace FoltoCrypt
 {
@@ -25,13 +26,43 @@ namespace FoltoCrypt
         public List<ItemWallet> walletArray;
         public string Path;
         CreateWallet createWallet;
+        public Classes.Options mainOptions = new Classes.Options();
+        public System.Windows.Threading.DispatcherTimer Time;
+
+        Windows.Options options;
         public MainWindow()
         {
             InitializeComponent();
             NewWallets();
+            StartOptions();
+
+            Time = new System.Windows.Threading.DispatcherTimer();
+            Time.Tick += new EventHandler(timerTick);
         }
 
         #region Main Functions
+
+        async void REFRESHALL()
+        {
+            await ManagerOfCurrence.Refresh();
+            Refresh();
+        }
+
+        private void StartOptions()
+        {
+            //открывает
+            if (!MainFunctions.LoadOptions(out mainOptions))
+            {
+                mainOptions = new Classes.Options();
+                OpenOptions();
+            }
+            else
+            {
+                ManagerOfCurrence.SetCur(mainOptions.MainCurrency);
+            }
+            //если не открылось открывет опции.
+        }
+
         private void NewWallets()
         {
             ManagerOfCurrence.Start();
@@ -101,9 +132,9 @@ namespace FoltoCrypt
                 totBa += p.BalCur / p.Price_B;
                 dataGrid.Items.Add(p);
             }
-            LabelTotIn.Content = "Total investment: " + totIn + " " + ManagerOfCurrence.MainCurrency;
-            LabelTotCo.Content = "Total Cost: " + totCo + " " + ManagerOfCurrence.MainCurrency;
-            LabelTotBa.Content = "Total Balance: " + totBa + " " + ManagerOfCurrence.MainCurrency;
+            LabelTotIn.Content = "Total investment: " + Math.Round(totIn,8) + " " + ManagerOfCurrence.MainCurrency;
+            LabelTotCo.Content = "Cost: " + Math.Round(totCo, 8) + " " + ManagerOfCurrence.MainCurrency;
+            LabelTotBa.Content = "Balance: " + Math.Round(totBa, 8) + " " + ManagerOfCurrence.MainCurrency;
         }
 
         private async void EditStroke()
@@ -172,6 +203,14 @@ namespace FoltoCrypt
                 dataGrid.Items.RemoveAt(Index);
                 Refresh();
             }
+        }
+
+        private void OpenOptions()
+        {
+            options = new Windows.Options(ref mainOptions);
+            options.ShowDialog();
+            options.Activate();
+            ManagerOfCurrence.SetCur(mainOptions.MainCurrency);
         }
 
         private void OpenChange(int N = -1)
@@ -292,7 +331,10 @@ namespace FoltoCrypt
 
         private void New_Click(object sender, RoutedEventArgs e) => NewWallets();
 
-        private void Refre_Click(object sender, RoutedEventArgs e) => Refresh();
+        private void Refre_Click(object sender, RoutedEventArgs e)
+        {
+            REFRESHALL();
+        }
 
         private void Open_Click(object sender, RoutedEventArgs e) => OpenChooseDir();
 
@@ -301,5 +343,34 @@ namespace FoltoCrypt
         private void SaveAs_Click(object sender, RoutedEventArgs e) => SaveChooseDir();
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OpenOptions();
+        }
+
+        private void timerTick(object sender, EventArgs e)
+        {
+            REFRESHALL();
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (AutoUp.IsChecked ?? false)
+            {
+                var a = mainOptions.BTime;
+                int m, s;
+                m = Convert.ToInt32(Math.Truncate(a));
+                s = Convert.ToInt32((a - m) * 10);
+
+                Time.Interval = new TimeSpan(0, m, s);
+
+                Time.Start();
+            }
+            else
+            {
+                Time.Stop();
+            }
+        }
     }
 }

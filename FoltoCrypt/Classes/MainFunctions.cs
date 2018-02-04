@@ -60,65 +60,52 @@ namespace FoltoCrypt.Classes
 
         static public void SaveOptions(Options ItemList)
         {
-            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Options[]));
+            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Options));
 
-            using (FileStream fs = new FileStream("options", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(NameOptions, FileMode.OpenOrCreate))
             {
                 jsonFormatter.WriteObject(fs, ItemList);
             }
         }
 
-        static public Options LoadOptions()
+        static public bool LoadOptions(out Options opt)
         {
-            Options ItemList;
-            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Options[]));
-
-            using (FileStream fs = new FileStream("options", FileMode.OpenOrCreate))
+            Options ItemList = new Options();
+            var ans = File.Exists(NameOptions);
+            if (ans)
             {
-                ItemList = (Options)jsonFormatter.ReadObject(fs);
+                try
+                {
+                    DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Options));
+                    using (FileStream fs = new FileStream(NameOptions, FileMode.OpenOrCreate))
+                    {
+                        ItemList = (Options)jsonFormatter.ReadObject(fs);
+                    }
+                }
+                catch
+                {
+                    ans = false;
+                }
             }
-            return ItemList;
+            opt = ItemList;
+            return ans;
         }
     }
 
-    class ManagerOfCurrence
+    public class ManagerOfCurrence
     {
         private static List<Currency> ListOfCurrency;
-        private static Options OPTIONS = new Options();
         public static string MainCurrency;
 
         public static void Start()
         {
-            LoadOptions();
-            MainCurrency = OPTIONS.MainCurrency;
             ListOfCurrency = new List<Currency>();
         }
-
-        public static bool SaveOptions()
+        public static void SetCur(string mai)
         {
-            try
-            {
-                MainFunctions.SaveOptions(OPTIONS);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            MainCurrency = mai;
         }
 
-        public static bool LoadOptions()
-        {
-            try
-            {
-                OPTIONS = MainFunctions.LoadOptions();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
         #region Manager of currency
         public static void New(string Name)//Создаёт новую валюту, если таковой не найдено
         {
@@ -213,20 +200,21 @@ namespace FoltoCrypt.Classes
 
     public class Options
     {
-        public string MainCurrency { get; set; }
-        public List<string> LastDocuments { get; set; }
+        public string MainCurrency;
+        public double BTime;
 
         public Options()
         {
-            LastDocuments = new List<string>();
-            MainCurrency = "RUB";
+            MainCurrency = "USD";
+            BTime = 0.1;
+        }
+        
+        public void Set(string a, double b)
+        {
+            MainCurrency = a;
+            BTime = b;
         }
 
-        public void Add(string a)
-        {
-            LastDocuments.Add(a);
-            while (LastDocuments.Count > 5) LastDocuments.RemoveAt(0);
-        }
     }
 
     public class ItemWallet
@@ -238,9 +226,9 @@ namespace FoltoCrypt.Classes
         public double InvCur { get; set; }
         public string Currency_I { get; set; }
         public string Investment { get { return InvCur + " " + Currency_I; } }
-        public string Cost { get { return Math.Round(BalCur / Price_B - InvCur / Price_I,2) + " " + Currency_I; } }
+        public string Cost { get { return Math.Round((BalCur / Price_B - InvCur / Price_I)* Price_I, 8) + " " + Currency_I; } }
         public string Balance { get { return BalCur + " " + Currency_B; } }
-        public string TrueBalance { get { return Math.Round(BalCur / Price_B,2) + " " + Currency_I; } }
+        public string TrueBalance { get { return Math.Round((BalCur / Price_B) * Price_I, 8) + " " + Currency_I; } }
         public double Price_I { get; set; }
         public double Price_B { get; set; }
 
