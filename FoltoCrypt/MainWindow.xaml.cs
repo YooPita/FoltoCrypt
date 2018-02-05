@@ -44,8 +44,11 @@ namespace FoltoCrypt
 
         async void REFRESHALL()
         {
-            await ManagerOfCurrence.Refresh();
-            Refresh();
+            if(dataGrid.Items.Count!=0)
+            {
+                await ManagerOfCurrence.Refresh();
+                Refresh();
+            }
         }
 
         private void StartOptions()
@@ -65,6 +68,9 @@ namespace FoltoCrypt
 
         private void NewWallets()
         {
+            LabelTotIn.Content = "";
+            LabelTotCo.Content = "";
+            LabelTotBa.Content = "";
             ManagerOfCurrence.Start();
             walletArray = new List<ItemWallet>();
             Path = "";
@@ -278,6 +284,7 @@ namespace FoltoCrypt
 
                 await ManagerOfCurrence.Refresh();
                 Refresh();
+                Path = dlg.FileName;
             }
         }
 
@@ -298,7 +305,7 @@ namespace FoltoCrypt
                 // Save document
                 Path = dlg.FileName;
                 SaveJust();
-                MessageBox.Show(Path, "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show(Path, "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -317,6 +324,11 @@ namespace FoltoCrypt
         {
             if (dataGrid.SelectedItems.Count == 1)
             {
+                if (AutoUp.IsChecked ?? false)
+                {
+                    AutoUp.IsChecked = false;
+                    Time.Stop();
+                }
                 OpenChange(dataGrid.SelectedIndex);
             }
         }
@@ -331,10 +343,7 @@ namespace FoltoCrypt
 
         private void New_Click(object sender, RoutedEventArgs e) => NewWallets();
 
-        private void Refre_Click(object sender, RoutedEventArgs e)
-        {
-            REFRESHALL();
-        }
+        private void Refre_Click(object sender, RoutedEventArgs e) => REFRESHALL();
 
         private void Open_Click(object sender, RoutedEventArgs e) => OpenChooseDir();
 

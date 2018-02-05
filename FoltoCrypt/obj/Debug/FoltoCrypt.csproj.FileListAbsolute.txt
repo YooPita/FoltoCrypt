@@ -16,6 +16,12 @@ D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\FoltoCrypt.exe
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\FoltoCrypt.pdb
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Windows\CreateWallet.g.cs
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Windows\CreateWallet.baml
-D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\FoltoCrypt.csprojResolveAssemblyReference.cache
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Windows\Options.g.cs
 D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Windows\Options.baml
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\bin\Debug\WPFToolkit.dll
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\App.baml
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Themes\Styles.baml
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Themes\VS2012\VS2012WindowStyle.baml
+D:\YooPita\C#\FoltoCrypt\FoltoCrypt\obj\Debug\Themes\VS2012\VS2012WindowStyle.g.cs

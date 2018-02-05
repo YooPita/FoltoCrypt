@@ -5,16 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoltoCrypt.Classes"
         mc:Ignorable="d"
-        Title="FoltoCrypt" Height="350" Width="619">
+        Title="FoltoCrypt"
+        Height="350"
+        Width="619"
+        MinHeight="160"
+        MinWidth="260"
+        Icon="mainicon.ico"
+        Style="{StaticResource VS2012WindowStyle}"
+        >
     <Window.Resources>
         <local:CostColor x:Key="CostColor"/>
         <Style x:Key="IdStyle" TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#bdbdbd" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
             <Setter Property="Foreground" Value="{Binding Cost, Converter={StaticResource CostColor}}" />
         </Style>
+
     </Window.Resources>
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="File" Cursor="Hand">
+            <MenuItem Header="File" Cursor="Hand" AutomationProperties.IsRequiredForForm="True" FlowDirection="RightToLeft">
                 <MenuItem Click="New_Click" Name="New" Header="New" Cursor="Hand" ></MenuItem>
                 <MenuItem Click="Open_Click" Header="Open" Cursor="Hand" ></MenuItem>
                 <Separator />
@@ -33,13 +47,13 @@
             <Button Click="Refre_Click" x:Name="Refre" Content="Refresh" HorizontalAlignment="Left" Width="75"/>
             <CheckBox Name="AutoUp" Click="CheckBox_Click" Content="Auto update"/>
         </StatusBar>
-        <DataGrid x:Name="dataGrid"  Margin="0,55,0,33" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White">
+        <DataGrid x:Name="dataGrid"  Margin="0,55,0,33" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Visibility="Hidden" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Investment" Width="*" Binding="{Binding Investment}"/>
                 <DataGridTextColumn Header="Balance" Width="*" Binding="{Binding Balance}"/>
-                <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}"  CellStyle="{StaticResource IdStyle}"/>
+                <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}" CellStyle="{StaticResource IdStyle}"/>
                 <DataGridTextColumn Header="TrueBalance" Width="*" Binding="{Binding TrueBalance}"/>
             </DataGrid.Columns>
         </DataGrid>
